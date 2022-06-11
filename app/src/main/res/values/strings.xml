@@ -3,4 +3,57 @@
     <string name="home_bottom_bar">Home</string>
     <string name="search_bottom_bar">Search</string>
     <string name="reports_bottom_bar">My Reports</string>
+
+    <!-- activities -->
+    <string name="title_activity_reg_user" translatable="false">RegUser</string>
+    <string name="home" translatable="false">Αρχική</string>
+    <string name="settings" translatable="false">Προφίλ</string>
+
+
+    <!--information -->
+    <string name="fullName" translatable="false">Ονοματεπώνυμο </string>
+    <string name="address" translatable="false">Τόπος Κατοικίας</string>
+    <string name="entryDate" translatable="false">Ημερομηνία Εγγραφής</string>
+    <string name="reportdate" translatable="false">Ημερομηνία και Ώρα</string>
+    <string name="location" translatable="false">Τοποθεσία</string>
+    <string name="description" translatable="false">Περιγραφή</string>
+    <string name="image" translatable="false">Φωτογραφία</string>
+
+    <!-- r text -->
+    <string name="student_user_reg" translatable="false">Εγγραφή Χρήστη</string>
+    <string name="report" translatable="false">Αναφορά Προβλήματος</string>
+    <string name="ownLoc" translatable="false">Χρησιμοποίησε την τοποθεσία μου</string>
+    <string name="register" translatable="false">Εγγραφή</string>
+    <string name="login" translatable="false">Σύνδεση</string>
+    <string name="logout" translatable="false">Αποσύνδεση</string>
+
+    <string name="password" translatable="false">Κωδικός Πρόσβασης</string>
+    <string name="password_conf" translatable="false">Επιβεβαίωση Κωδικού</string>
+    <string name="invalid_creds" translatable="false">Λάθος κωδικός ή λάθος email</string>
+    <string name="invalid_pass" translatable="false">Οι κωδικοί πρόσβασης πρέπει να είναι ίδιοι.</string>
+    <string name="checkInternet" translatable="false">Ελέγξτε τη σύνδεσή σας στο δίκτυο.</string>
+    <string name="blankField" translatable="false">Συμπληρώστε όλα τα πεδία!</string>
+    <string name="error500" translatable="false">Το σύστημα δεν ανταποκρίνεται. Προσπαθήστε πάλι αργότερα.</string>
+    <string name="authorization" translatable="false">Πρέπει να συνδεθείτε σε λογαριασμό πρώτα.</string>
+    <string name="validationfail" translatable="false">Παρακαλώ, ελέγξτε ότι έχετε συμπληρώσει όλα τα πεδία πρώτα.</string>
+    <string name="invalidEmail" translatable="false">Παρακαλώ, εισάγετε ένα σωστό email.</string>
+    <string name="securePass" translatable="false">Παρακαλώ, εισάγετε έναν πιο ασφαλή κωδικό.</string>
+    <string name="pass_req" translatable="false">Ο κωδικός πρόσβασης  πρέπει να έχει τουλάχιστον 8 χαρακτήρες, 1 κεφαλαίο γράμμα, 1 μικρό και 1 νούμερο.</string>
+    <string name="useralreadyexists" translatable="false">Αυτό το email ή/και το username χρησιμοποιούνται ήδη. \nΠαρακαλώ, χρησιμοποιείστε διαφορετικά.</string>
+    <string name="stalreadyexists" translatable="false">Υπάρχει ήδη λογαριασμός φοιτητή με αυτά τα στοιχεία.</string>
+    <string name="email" translatable="false">E-mail</string>
+    <string name="username" translatable="false">Όνομα Χρήστη</string>
+    <string name="fullname" translatable="false">Ονοματεπώνυμο</string>
+    <string name="app_name2" translatable="false">Report All</string>
+    <string name="phone" translatable="false">Τηλέφωνο Επικοινωνίας</string>
+
+    <string name="signup" translatable="false">Δεν έχετε λογαριασμό;\nΚάντε εγγραφή.</string>
+    <string name="go2login" translatable="false">Έχετε ήδη λογαριασμό;\nΣυνδεθείτε.</string>
+    <string name="update_check" translatable="false">Είστε σίγουροι ότι θέλετε να αλλάξετε αυτά τα στοιχεία;</string>
+    <string name="update_success" translatable="false">Οι αλλαγές έγιναν επιτυχώς</string>
+    <string name="update" translatable="false">Αλλαγή</string>
+    <string name="okay" translatable="false">OK</string>
+    <string name="cancel" translatable="false">Άκυρο</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
 </resources>

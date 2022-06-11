@@ -4,38 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/rectangle_back"
     tools:context=".ReportsActivity">
 
     <TextView
         android:id="@+id/report"
-        map:layout_constraintStart_toStartOf="parent"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
         android:text="Reports"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        map:layout_constraintBottom_toBottomOf="parent"
-        map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="parent"
-        android:layout_width="380dp"
-        android:layout_height="489dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottombar2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.864"
-        tools:context=".MapsActivity" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottombar2"
@@ -43,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginBottom="0dp"
-        android:background="@drawable/rectangled"
+        android:background="@drawable/navbar"
         app:elevation="2dp"
         app:itemIconSize="30dp"
         app:itemIconTint="@drawable/items_selector"
@@ -55,4 +39,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_items" />
 
+    <TextView
+        android:id="@+id/hellouser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/report"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- map:layout_constraintStart_toStartOf="parent" -->
+    <!--        map:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        map:layout_constraintEnd_toEndOf="parent"-->
+    <!--        map:layout_constraintStart_toStartOf="parent"-->
+    <!--        map:layout_constraintTop_toTopOf="parent"-->

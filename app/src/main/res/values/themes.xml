@@ -30,6 +30,8 @@
 -->
         <item name="android:textColor">@color/darkblue</item>
     </style>
-
+    <style name="DialogTheme" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="colorAccent">@color/midnightblue</item>
+    </style>
 
 </resources>

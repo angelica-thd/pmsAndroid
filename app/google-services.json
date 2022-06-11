@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "127431143284",
+    "firebase_url": "https://course9-b6dac-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "course9-b6dac",
+    "storage_bucket": "course9-b6dac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127431143284:android:22f04e28c0262a4fb54621",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127431143284-11gpr91sf3k2k035qrg26ki0kajc4q3r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuOKD_ZtunaIIlHu6RWuwnPvcDoWZwyRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127431143284-11gpr91sf3k2k035qrg26ki0kajc4q3r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
