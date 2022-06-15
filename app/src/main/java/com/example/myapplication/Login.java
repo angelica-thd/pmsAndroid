@@ -12,9 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
     private FirebaseAuth auth;
+    private FirebaseUser currentUser;
     private EditText pass,email;
 
     @Override
@@ -31,8 +33,8 @@ public class Login extends AppCompatActivity {
             pass.setText("");
 
         //if the holder has already logged in once while using the app there's no need to sign in again
-//            if(auth.getCurrentUser()!=null){
-//            startActivity(new Intent(this,Signup.class));
+            if(auth.getCurrentUser()!=null)
+                startActivity(new Intent(this,MainActivity.class));
         }
 
 
@@ -49,7 +51,10 @@ public class Login extends AppCompatActivity {
         }
 
         auth.signInWithEmailAndPassword(email.getText().toString(),pass.getText().toString()).addOnCompleteListener(this,
-                task -> { if(task.isSuccessful()) {startActivity(new Intent(this,ReportsActivity.class).putExtra("activity",0));}
+                task -> { if(task.isSuccessful()) {
+                    currentUser = auth.getCurrentUser();
+                    startActivity(new Intent(this,ReportsActivity.class).putExtra("activity",0));
+                }
                 else Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show(); });
     }
 

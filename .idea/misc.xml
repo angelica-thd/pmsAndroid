@@ -29,10 +29,14 @@
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/layout/activity_signup.xml" value="0.33" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/menu/menu_items.xml" value="0.309375" />
         <entry key="app/src/main/res/drawable-anydpi/ic_home.xml" value="0.3345" />
+        <entry key="app/src/main/res/drawable/buttonback.xml" value="0.1895" />
         <entry key="app/src/main/res/drawable/items_selector.xml" value="0.3345" />
+        <entry key="app/src/main/res/drawable/rectangle_back.xml" value="0.1895" />
         <entry key="app/src/main/res/drawable/rectangled.xml" value="0.3345" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.37395833333333334" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.18125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_reports.xml" value="0.37395833333333334" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.18125" />
         <entry key="app/src/main/res/menu/menu_items.xml" value="0.37395833333333334" />
       </map>
     </option>
