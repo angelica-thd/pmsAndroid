@@ -83,7 +83,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/signupbackgr"
         app:layout_constraintStart_toStartOf="@+id/signupbackgr"
-        app:layout_constraintTop_toBottomOf="@+id/signup"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText

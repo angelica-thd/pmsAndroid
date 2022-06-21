@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/rectangle_back"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".NewReportActivity">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -25,9 +25,22 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/mainLayout"
             app:layout_constraintTop_toTopOf="@id/scroll">
 
 
+            <ProgressBar
+                android:id="@+id/progress_view"
+                style="@android:style/Widget.Holo.Light.ProgressBar"
+                android:layout_width="match_parent"
+                android:visibility="invisible"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:progressTint="@color/steelblue"
+                app:layout_constraintBottom_toTopOf="@+id/locationButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description" />
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
@@ -201,7 +214,7 @@
                 />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/admin_fab"
+                android:id="@+id/report_fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
@@ -220,7 +233,7 @@
                 android:layout_height="120dp"
                 android:layout_marginTop="8dp"
                 android:visibility="visible"
-                app:layout_constraintBottom_toTopOf="@+id/admin_fab"
+                app:layout_constraintBottom_toTopOf="@+id/report_fab"
                 app:layout_constraintEnd_toStartOf="@+id/cam"
                 app:layout_constraintHorizontal_bias="0.365"
                 app:layout_constraintStart_toStartOf="@+id/back"
@@ -250,7 +263,6 @@
         android:background="@drawable/navbar"
         app:elevation="2dp"
         app:itemIconSize="30dp"
-        android:onClick="report"
         app:itemIconTint="@drawable/items_selector"
         app:itemRippleColor="@android:color/transparent"
         app:labelVisibilityMode="unlabeled"

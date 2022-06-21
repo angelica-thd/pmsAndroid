@@ -230,7 +230,7 @@
                 app:layout_constraintStart_toStartOf="@+id/backdown" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/admin_fab"
+                android:id="@+id/report_fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
@@ -254,7 +254,7 @@
                 android:textColor="#C81010"
                 android:textSize="12sp"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@+id/admin_fab"
+                app:layout_constraintBottom_toTopOf="@+id/report_fab"
                 app:layout_constraintEnd_toEndOf="@+id/back"
                 app:layout_constraintHorizontal_bias="0.65"
                 app:layout_constraintStart_toStartOf="@+id/back"

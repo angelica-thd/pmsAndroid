@@ -1,13 +1,88 @@
 package com.example.myapplication;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 public class Report {
     private String timestamp;
     private String location;
+    private double latitude;
+    private double longitude;
     private String description;
+    private String id;
 
+    public Report(String id) {
+        this.id = id;
+    }
     public Report() {
+
+
+    }
+    public List<Report> getReports(DatabaseReference ref, String userID){
+        List<Report> reports = new ArrayList<>();
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot myreport : snapshot.child(userID).getChildren()) {
+                    String id = String.valueOf(myreport.child("id").getValue());
+                    String location = String.valueOf(myreport.child("location").getValue());
+                    String lat = String.valueOf(myreport.child("latitude").getValue());
+                    String lon = String.valueOf(myreport.child("longitude").getValue());
+                    String description = String.valueOf(myreport.child("description").getValue());
+                    String timestamp = String.valueOf(myreport.child("timestamp").getValue());
+                    //LatLng loc =new LatLng(Double.parseDouble(lat),Double.parseDouble(lon));
+
+                    Report report = new Report(id);
+                    report.setTimestamp(timestamp);
+                    report.setDescription(description);
+                    report.setLocation(location);
+                    report.setLatitude(Double.parseDouble(lat));
+                    report.setLongitude(Double.parseDouble(lon));
+
+                    reports.add(report);
+
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i("fire_error",error.getMessage());
+            }
+        });
+        Log.i("reports", String.valueOf(reports));
+        return reports;
     }
 
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+    public String getId() {
+        return id;
+    }
     public String getTimestamp() {
         return timestamp;
     }

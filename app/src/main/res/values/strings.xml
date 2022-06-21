@@ -3,6 +3,7 @@
     <string name="home_bottom_bar">Home</string>
     <string name="search_bottom_bar">Search</string>
     <string name="reports_bottom_bar">My Reports</string>
+    <string name="new_report_bottom_bar">New Report</string>
 
     <!-- activities -->
     <string name="title_activity_reg_user" translatable="false">RegUser</string>
@@ -16,9 +17,11 @@
     <string name="entryDate" translatable="false">Ημερομηνία Εγγραφής</string>
     <string name="reportdate" translatable="false">Ημερομηνία και Ώρα</string>
     <string name="location" translatable="false">Τοποθεσία</string>
+    <string name="yourlocation" translatable="false">Η τοποθεσία σας</string>
     <string name="description" translatable="false">Περιγραφή</string>
     <string name="image" translatable="false">Φωτογραφία</string>
-
+    <string name="loc_not_ready">Παρακαλώ περιμένετε, όσο βρίσκουμε την τοποθεσία σας.</string>
+    <string name="map_not_ready">Παρακαλώ περιμένετε, όσο ο χάρτης φορτώνει.</string>
     <!-- r text -->
     <string name="student_user_reg" translatable="false">Εγγραφή Χρήστη</string>
     <string name="report" translatable="false">Αναφορά Προβλήματος</string>
@@ -26,6 +29,7 @@
     <string name="register" translatable="false">Εγγραφή</string>
     <string name="login" translatable="false">Σύνδεση</string>
     <string name="logout" translatable="false">Αποσύνδεση</string>
+    <string name="success" translatable="false">Επιτυχής Αναφορά</string>
 
     <string name="password" translatable="false">Κωδικός Πρόσβασης</string>
     <string name="password_conf" translatable="false">Επιβεβαίωση Κωδικού</string>
@@ -54,6 +58,9 @@
     <string name="update" translatable="false">Αλλαγή</string>
     <string name="okay" translatable="false">OK</string>
     <string name="cancel" translatable="false">Άκυρο</string>
+
+    <string name="gps_network_not_enabled" translatable="false">Η εφαρμογή λειτουργεί με την υπηρεσία GPS. Θέλετε να την ενεργοποιήσετε;</string>
+    <string name="open_location_settings" translatable="false">Ανακατεύθυνση στις ρυθμίσεις.</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>
