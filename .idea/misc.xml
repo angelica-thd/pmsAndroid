@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.196875" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable-anydpi/ic_home.xml" value="0.3675" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable-anydpi/ic_report.xml" value="0.3675" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable-anydpi/ic_search.xml" value="0.3675" />
@@ -15,7 +16,6 @@
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable/error_toast.xml" value="0.1985" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable/face.xml" value="0.3485" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.3675" />
-        <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable/ic_baseline_location_city_24.xml" value="0.284" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.3675" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable/ic_baseline_report_problem_24.xml" value="0.365" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable/imgbtn.xml" value="0.3665" />
@@ -24,25 +24,24 @@
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable/password.xml" value="0.365" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable/rectangle_back.xml" value="0.365" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/drawable/rectangled.xml" value="0.365" />
-        <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/layout/activity_all_reports.xml" value="0.30052083333333335" />
-        <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/layout/activity_login.xml" value="0.18" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/layout/activity_reports.xml" value="0.33" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/layout/activity_signup.xml" value="0.33" />
-        <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/layout/activity_single_report.xml" value="0.30052083333333335" />
-        <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/layout/listview_adapter.xml" value="0.30052083333333335" />
         <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/menu/menu_items.xml" value="0.309375" />
-        <entry key="..\:/Users/ageli/Documents/uni/MSc/android/pmsAndroid/app/src/main/res/xml/config_settings.xml" value="0.28125" />
         <entry key="app/src/main/res/drawable-anydpi/ic_home.xml" value="0.3345" />
         <entry key="app/src/main/res/drawable/buttonback.xml" value="0.1895" />
         <entry key="app/src/main/res/drawable/items_selector.xml" value="0.3345" />
         <entry key="app/src/main/res/drawable/rectangle_back.xml" value="0.1895" />
         <entry key="app/src/main/res/drawable/rectangled.xml" value="0.3345" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.18125" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_reports.xml" value="0.37395833333333334" />
+        <entry key="app/src/main/res/layout/activity_reports.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.18125" />
+        <entry key="app/src/main/res/layout/activity_single_report.xml" value="0.31865828092243187" />
+        <entry key="app/src/main/res/layout/spinner_list.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/menu/menu_items.xml" value="0.37395833333333334" />
+        <entry key="app/src/main/res/xml/file_paths.xml" value="0.18020833333333333" />
       </map>
     </option>
   </component>

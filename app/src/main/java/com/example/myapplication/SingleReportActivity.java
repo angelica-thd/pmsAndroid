@@ -24,10 +24,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class SingleReportActivity extends AppCompatActivity {
-    TextView locView,descrView,dateView;
+    TextView locView,descrView,dateView,categoryView;
     ImageView imgRep;
     ProgressBar progressBar;
-    private String location,description,date,reportID;
+    private String location,description,date,reportID,category;
     private FirebaseUser currentUser;
     private FirebaseDatabase db;
     private FirebaseAuth auth;
@@ -44,6 +44,7 @@ public class SingleReportActivity extends AppCompatActivity {
         descrView = findViewById(R.id.descriptionvalue);
         dateView = findViewById(R.id.datetimevalue);
         progressBar = findViewById(R.id.progressbar);
+        categoryView = findViewById(R.id.categoryvalue);
 
         db = FirebaseDatabase.getInstance("https://course9-b6dac-default-rtdb.europe-west1.firebasedatabase.app/");
         ref = db.getReference("reports");
@@ -62,13 +63,16 @@ public class SingleReportActivity extends AppCompatActivity {
         date = getIntent().getStringExtra("datetime");
         description = getIntent().getStringExtra("description");
         reportID = getIntent().getStringExtra("reportID");
+        category = getIntent().getStringExtra("category");
 
         try{
             locView.setText(location);
             dateView.setText(date);
             descrView.setText(description);
+            categoryView.setText(category);
             File localfile = File.createTempFile("tmp","jpg") ;
             Log.e("ref",currentUser.getUid()+"/"+reportID);
+            //TODO fix getting the right file
             StorageReference imgref = storageReference.child(currentUser.getUid()+"/"+reportID);
             imgref.getFile(localfile).addOnSuccessListener(taskSnapshot -> {
                 imgRep.setVisibility(View.VISIBLE);

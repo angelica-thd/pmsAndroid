@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,13 +23,11 @@ public class Report {
     private String description;
     private String id;
     private String type;
-    private List<String> types;
+
 
 
     public Report(String id) {
         this.id = id;
-        String[] commons = {"Ελλειπής Συντήρηση Δρόμων", "Ελλειπής Συντήρηση Παλαιών Κτιρίων", "Έλλειψη Μέσων Μαζικής Μεταφοράς στην Περιοχή", "Βλάβες/Καταστροφές", "Έλλειψη Θέσεις Πάρκινγκ", "Ρύπανση", "Ελλειπής Απομάκρυνση Απορριμάτων", "Εγκληματικότητα", "Βανδαλισμοί", "Άλλο"};
-        types.addAll(Arrays.asList(commons));
     }
     public Report() {
     }
@@ -66,12 +66,20 @@ public class Report {
         return reports;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return this.id + ", "+ this.location + ", "+ this.timestamp +", "+this.type;
+    }
+
     public String getType() {
         return type;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public boolean setType(String type) {
-        if (types.contains(type)){
+        String[] types = new String[]{"Ελλειπής Συντήρηση Δρόμων", "Ελλειπής Συντήρηση Παλαιών Κτιρίων", "Έλλειψη Μέσων Μαζικής Μεταφοράς στην Περιοχή", "Βλάβες/Καταστροφές", "Έλλειψη Θέσεις Πάρκινγκ", "Ρύπανση", "Ελλειπής Απομάκρυνση Απορριμάτων", "Εγκληματικότητα", "Βανδαλισμοί", "Άλλο"};
+        if (Arrays.asList(types).contains(type)){
             this.type = type;
             return true;
         }

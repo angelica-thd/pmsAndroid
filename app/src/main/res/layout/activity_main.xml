@@ -100,26 +100,27 @@
                 app:layout_constraintStart_toStartOf="@id/back"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-            <EditText
-                android:id="@+id/locationvalue2"
-                android:layout_width="280dp"
+
+            <Spinner
+                android:id="@+id/category"
+                android:outlineSpotShadowColor="@color/darkblue"
+                android:backgroundTint="@color/babydarkerblue"
+                android:popupBackground="@color/red50"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:ems="10"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:inputType="textPersonName"
-                android:textColor="#3C3C3C"
-                app:layout_constraintEnd_toEndOf="@id/back"
-                app:layout_constraintHorizontal_bias="0.6"
-                app:layout_constraintStart_toStartOf="@id/back"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.447"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="72dp"
                 android:text="@string/reportdate"
                 android:textColor="@color/black"
@@ -134,13 +135,13 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/buttonback"
                 android:onClick="pickDate"
 
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="@+id/back"
-                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintHorizontal_bias="0.074"
                 app:layout_constraintStart_toEndOf="@+id/textView5"
                 app:layout_constraintTop_toTopOf="@+id/back"
                 app:srcCompat="@drawable/ic_baseline_access_time_24"
@@ -194,7 +195,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/back"
                 app:layout_constraintHorizontal_bias="0.074"
                 app:layout_constraintStart_toStartOf="@+id/back"
-                app:layout_constraintTop_toBottomOf="@+id/locationvalue2" />
+                app:layout_constraintTop_toBottomOf="@+id/category" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -230,27 +231,28 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
-                android:scaleType="fitXY"
-                android:onClick="selectImg"
                 android:background="@drawable/buttonback"
+                android:onClick="selectImg"
+                android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="@+id/back"
                 app:layout_constraintHorizontal_bias="0.356"
                 app:layout_constraintStart_toEndOf="@+id/cam"
                 app:layout_constraintTop_toBottomOf="@+id/textView10"
-                app:srcCompat="@drawable/ic_baseline_upload_24"
-                />
+                app:srcCompat="@drawable/ic_baseline_upload_24" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/report_fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/arrow_forward"
                 app:backgroundTint="@color/darkblue"
                 app:layout_constraintBottom_toBottomOf="@+id/back"
                 app:layout_constraintEnd_toEndOf="@+id/back"
+                app:layout_constraintTop_toBottomOf="@+id/upload"
                 app:tint="@color/red50" />
 
 

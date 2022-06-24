@@ -81,24 +81,37 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/location"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/back"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.064"
         app:layout_constraintStart_toStartOf="@+id/back"
         app:layout_constraintTop_toBottomOf="@id/datetimevalue" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/category"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/back"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="@+id/back"
+        app:layout_constraintTop_toBottomOf="@+id/locationvalue" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
         android:text="@string/description"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/back"
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="@+id/back"
-        app:layout_constraintTop_toBottomOf="@+id/locationvalue" />
+        app:layout_constraintTop_toBottomOf="@+id/categoryvalue" />
 
     <TextView
         android:id="@+id/locationvalue"
@@ -114,6 +127,20 @@
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="@id/back"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/categoryvalue"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:inputType="textPersonName"
+        android:textColor="#3C3C3C"
+        app:layout_constraintEnd_toEndOf="@id/back"
+        app:layout_constraintStart_toStartOf="@id/back"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <ProgressBar
         android:id="@+id/progressbar"

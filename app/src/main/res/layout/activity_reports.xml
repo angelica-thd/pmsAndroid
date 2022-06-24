@@ -38,19 +38,19 @@
                 tools:context=".MyReportsActivity" />
 
 
-            <TextView
-                android:id="@+id/hellouser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="16dp"
-                android:textColor="@color/white"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/report"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="visible" />
+    <TextView
+        android:id="@+id/hellouser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/black"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/report"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

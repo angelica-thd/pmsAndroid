@@ -52,6 +52,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class MyReportsActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
@@ -123,33 +124,40 @@ public class MyReportsActivity extends AppCompatActivity implements OnMapReadyCa
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot myreport : snapshot.child(currentUser.getUid()).getChildren()) {
-                    String id = String.valueOf(myreport.child("id").getValue());
-                    String location = String.valueOf(myreport.child("location").getValue());
-                    Double lat = Double.valueOf(String.valueOf(myreport.child("latitude").getValue()));
-                    Double lon = Double.valueOf(String.valueOf(myreport.child("longitude").getValue()));
-                    String description = String.valueOf(myreport.child("description").getValue());
-                    String timestamp = String.valueOf(myreport.child("timestamp").getValue());
+                for (DataSnapshot user: snapshot.getChildren()){
+                    Log.i("report",user.getKey());
+                    for (DataSnapshot report : user.getChildren()){
+                        String id = String.valueOf(report.child("id").getValue());
+                        String location = String.valueOf(report.child("location").getValue());
+                        String category = String.valueOf(report.child("type").getValue());
+                        Double lat = Double.valueOf(String.valueOf(report.child("latitude").getValue()));
+                        Double lon = Double.valueOf(String.valueOf(report.child("longitude").getValue()));
+                        String description = String.valueOf(report.child("description").getValue());
+                        String timestamp = String.valueOf(report.child("timestamp").getValue());
 
-                    Report report = new Report(id);
-                    report.setLocation(location);
-                    report.setLatitude(lat);
-                    report.setLongitude(lon);
-                    report.setDescription(description);
-                    report.setTimestamp(timestamp);
+                        Report rep = new Report(id);
+                        rep.setLocation(location);
+                        rep.setLatitude(lat);
+                        rep.setLongitude(lon);
+                        rep.setType(category);
+                        rep.setDescription(description);
+                        rep.setTimestamp(timestamp);
 
-                    reports.add(report);
+                        reports.add(rep);
 
 
-                    if (mMap != null) {
-                        LatLng loc = new LatLng(lat, lon);
-                        MarkerOptions my_options = new MarkerOptions().position(loc).title(location);
-                        my_options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                        mMap.addMarker(my_options);
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 15));
-                    }else Toast.makeText(mapFragment.getActivity(), R.string.map_not_ready, Toast.LENGTH_LONG).show();
+                        if (mMap != null) {
+                            LatLng loc = new LatLng(lat, lon);
+                            MarkerOptions my_options = new MarkerOptions().position(loc).title(location);
+                            if (Objects.equals(user.getKey(), currentUser.getUid())) my_options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                            else my_options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+                            mMap.addMarker(my_options);
+                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 15));
+                        }else Toast.makeText(mapFragment.getActivity(), R.string.map_not_ready, Toast.LENGTH_LONG).show();
 
-            }
+                    }
+
+                }
 
                 assert mMap != null;
 //                mMap.setOnMapLongClickListener((GoogleMap.OnMapLongClickListener) marker ->{
@@ -163,6 +171,7 @@ public class MyReportsActivity extends AppCompatActivity implements OnMapReadyCa
                             .putExtra("location",report.getLocation())
                             .putExtra("description",report.getDescription())
                             .putExtra("datetime",report.getTimestamp())
+                            .putExtra("category",report.getType())
                             .putExtra("reportID",report.getId()));
 
                     return true;

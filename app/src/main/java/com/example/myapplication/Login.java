@@ -38,6 +38,10 @@ public class Login extends AppCompatActivity {
         }
 
 
+        public void signUp(View view){
+            startActivity(new Intent(this, Signup.class));
+        }
+
 
     //if the authentication is successful the holder is sent to the Sender activity otherwise an error message appears
     public void signIn(View view){

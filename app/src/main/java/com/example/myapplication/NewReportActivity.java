@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -16,22 +17,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -57,12 +63,14 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
     ImageView datetimePicker,locationView,incidentPhoto;
     TextView datetimeView,coord;
     FloatingActionButton fab;
+    Spinner dropdown;
     ProgressBar progressBar;
     private EditText description;
     private Context main;
     BottomNavigationView bottomBar;
     private LatLng current_loc,user_input_loc;
     private double current_lat = -99, current_lon = -99;
+    private String category;
     private FirebaseDatabase db;
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
@@ -75,13 +83,14 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
     private final int PICK_IMAGE_REQUEST = 22;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int  reqCode = 786;
+    private Context context;
 
-
-
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); //night mode ui is not supported
         datetimePicker = findViewById(R.id.datetime);
         datetimeView = findViewById(R.id.datetimevalue);
@@ -100,6 +109,31 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
         auth = FirebaseAuth.getInstance();      //firebase authentication initialization
         currentUser = auth.getCurrentUser();
 
+        //get the spinner from the xml.
+        dropdown = findViewById(R.id.category);
+        //create a list of items for the spinner.
+        String[] items = new String[]{"Ελλειπής Συντήρηση Δρόμων", "Ελλειπής Συντήρηση Παλαιών Κτιρίων", "Έλλειψη Μέσων Μαζικής Μεταφοράς στην Περιοχή", "Βλάβες/Καταστροφές", "Έλλειψη Θέσεις Πάρκινγκ", "Ρύπανση", "Ελλειπής Απομάκρυνση Απορριμάτων", "Εγκληματικότητα", "Βανδαλισμοί", "Άλλο"};
+
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        //There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item ,items);
+        //set the spinners adapter to the previously created one.
+        adapter.setDropDownViewResource(R.layout.spinner_list);
+        dropdown.setAdapter(adapter);
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent,View view, int pos, long id) {
+                category = parent.getItemAtPosition(pos).toString();
+            }
+
+            public void onNothingSelected(AdapterView parent) {
+                Toast toast = Toast.makeText(context, R.string.select_category, Toast.LENGTH_LONG);
+                View v = toast.getView();
+                v.setBackgroundResource(R.drawable.error_toast);
+                TextView t = (TextView) toast.getView().findViewById(android.R.id.message);
+                t.setTextColor(Color.RED);
+                toast.show();
+            }
+        });
 
 //        boolean gps_enabled = false, network_enabled = false;
 //        try {
@@ -265,11 +299,21 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void report() throws IOException {
         Report report = new Report(String.valueOf(UUID.randomUUID()));
         report.setTimestamp(datetimeView.getText().toString());
         report.setDescription(description.getText().toString());
         report.setLocation(coord.getText().toString());
+        if (category!=null) report.setType(category);
+        else {
+            Toast toast = Toast.makeText(context, R.string.select_category, Toast.LENGTH_LONG);
+            View v = toast.getView();
+            v.setBackgroundResource(R.drawable.error_toast);
+            TextView t = (TextView) toast.getView().findViewById(android.R.id.message);
+            t.setTextColor(Color.RED);
+            toast.show();
+        }
         if (current_lon!= -99 && current_lat!= -99){
             report.setLatitude(current_lat);
             report.setLongitude(current_lon);
@@ -282,13 +326,14 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
                 Log.i("report", String.valueOf(user_input_loc));
             }
         }
-        Log.i("report", String.valueOf(report));
+        Log.i("report", report.toString());
 
         // adding listeners on upload
         // or failure of image
         // Progress Listener for loading
         // percentage on the dialog box
-
+        //TODO check if everything is filled
+        //TODO fix upload from camera
         ref.child(currentUser.getUid()).push().setValue(report).addOnCompleteListener(task -> {
                                     if(task.isSuccessful()){
                                         Log.i("click","ref");

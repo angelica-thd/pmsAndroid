@@ -58,6 +58,7 @@
     <string name="go2login" translatable="false">Έχετε ήδη λογαριασμό;\nΣυνδεθείτε.</string>
     <string name="update_check" translatable="false">Είστε σίγουροι ότι θέλετε να αλλάξετε αυτά τα στοιχεία;</string>
     <string name="update_success" translatable="false">Οι αλλαγές έγιναν επιτυχώς</string>
+    <string name="select_category" translatable="false">Παρακαλώ, επιλέξτε κατηγορία.</string>
     <string name="update" translatable="false">Αλλαγή</string>
     <string name="okay" translatable="false">OK</string>
     <string name="cancel" translatable="false">Άκυρο</string>
