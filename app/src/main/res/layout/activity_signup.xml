@@ -7,7 +7,6 @@
     android:gravity="center"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="@drawable/rectangle_back"
     android:alpha="0.95"
     tools:context=".Signup">
 
@@ -39,21 +38,23 @@
                 app:layout_constraintBottom_toTopOf="@+id/backdown"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/rectangled"
-                app:tint="@color/white" />
+                android:background="@drawable/rectangle_back"
+                />
 
             <ImageView
                 android:id="@+id/backdown"
                 android:layout_width="320dp"
                 android:layout_height="137dp"
+                android:layout_marginBottom="36dp"
                 android:alpha="0.4"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.551"
+                app:layout_constraintHorizontal_bias="0.615"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/rectangled"
-                app:tint="@color/white" />
+                android:background="@drawable/rectangle_back"
+
+                 />
 
             <EditText
                 android:id="@+id/emailedit"
@@ -125,24 +126,24 @@
                 app:layout_constraintStart_toStartOf="@id/back"
                 app:layout_constraintTop_toBottomOf="@+id/pass_st" />
 
+
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="361dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:text="@string/student_user_reg"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/back"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.125"
+                app:layout_constraintHorizontal_bias="0.071"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/textView5"

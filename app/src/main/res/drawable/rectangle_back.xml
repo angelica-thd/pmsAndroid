@@ -11,6 +11,7 @@
         android:centerX="0.5"
         android:centerY="0"
         android:angle="90"/>
+    <corners android:radius="40dp"/>
 
 
 

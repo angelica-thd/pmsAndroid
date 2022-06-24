@@ -79,19 +79,6 @@ public class MyReportsActivity extends AppCompatActivity implements OnMapReadyCa
         setContentView(R.layout.activity_reports);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); //night mode ui is not supported
         hellouser = findViewById(R.id.hellouser);
-        descrRep = findViewById(R.id.descrRep);
-        locRep = findViewById(R.id.locRep);
-        dateRep = findViewById(R.id.datetimeRep);
-        imgRep = findViewById(R.id.imgRep);
-
-
-        findViewById(R.id.locLabel).setVisibility(View.INVISIBLE);
-        locRep.setVisibility(View.INVISIBLE);
-        findViewById(R.id.descrLabel).setVisibility(View.INVISIBLE);
-        descrRep.setVisibility(View.INVISIBLE);
-        findViewById(R.id.datetimeLabel).setVisibility(View.INVISIBLE);
-        dateRep.setVisibility(View.INVISIBLE);
-        imgRep.setVisibility(View.INVISIBLE);
 
         db = FirebaseDatabase.getInstance("https://course9-b6dac-default-rtdb.europe-west1.firebasedatabase.app/");
         ref = db.getReference("reports");
@@ -139,8 +126,8 @@ public class MyReportsActivity extends AppCompatActivity implements OnMapReadyCa
                 for (DataSnapshot myreport : snapshot.child(currentUser.getUid()).getChildren()) {
                     String id = String.valueOf(myreport.child("id").getValue());
                     String location = String.valueOf(myreport.child("location").getValue());
-                    Double lat = (Double) myreport.child("latitude").getValue();
-                    Double lon = (Double) myreport.child("longitude").getValue();
+                    Double lat = Double.valueOf(String.valueOf(myreport.child("latitude").getValue()));
+                    Double lon = Double.valueOf(String.valueOf(myreport.child("longitude").getValue()));
                     String description = String.valueOf(myreport.child("description").getValue());
                     String timestamp = String.valueOf(myreport.child("timestamp").getValue());
 
@@ -165,30 +152,19 @@ public class MyReportsActivity extends AppCompatActivity implements OnMapReadyCa
             }
 
                 assert mMap != null;
+//                mMap.setOnMapLongClickListener((GoogleMap.OnMapLongClickListener) marker ->{
+//
+//
+//                });
                 mMap.setOnMarkerClickListener((GoogleMap.OnMarkerClickListener) marker -> {
-
                     List<Report> reps = reports.stream().filter(x -> new LatLng(x.getLatitude(), x.getLongitude()).equals(marker.getPosition())).collect(Collectors.toList());
-                    findViewById(R.id.locLabel).setVisibility(View.VISIBLE);
-                    locRep.setVisibility(View.VISIBLE);
-                    locRep.setText(reps.get(reps.size()-1).getLocation());
-                    findViewById(R.id.descrLabel).setVisibility(View.VISIBLE);
-                    descrRep.setVisibility(View.VISIBLE);
-                    descrRep.setText(reps.get(reps.size()-1).getDescription());
-                    findViewById(R.id.datetimeLabel).setVisibility(View.VISIBLE);
-                    dateRep.setVisibility(View.VISIBLE);
-                    dateRep.setText(reps.get(reps.size()-1).getTimestamp());
+                    Report report = reps.get(reps.size()-1);
+                    startActivity(new Intent(getApplicationContext(), SingleReportActivity.class)
+                            .putExtra("location",report.getLocation())
+                            .putExtra("description",report.getDescription())
+                            .putExtra("datetime",report.getTimestamp())
+                            .putExtra("reportID",report.getId()));
 
-                    try{
-                        File localfile = File.createTempFile("tmp","jpg") ;
-                        Log.e("ref",currentUser.getUid()+"/"+reps.get(reps.size()-1).getId());
-                        StorageReference imgref = storageReference.child(currentUser.getUid()+"/"+reps.get(reps.size()-1).getId());
-                        imgref.getFile(localfile).addOnSuccessListener(taskSnapshot -> {
-                                    imgRep.setVisibility(View.VISIBLE);
-                                    imgRep.setImageBitmap(BitmapFactory.decodeFile(localfile.getAbsolutePath()));
-                                });
-                        }catch (IOException e){
-                            e.printStackTrace();
-                    }
                     return true;
                     });
                 }
@@ -206,6 +182,15 @@ public class MyReportsActivity extends AppCompatActivity implements OnMapReadyCa
         bottomBar.setOnNavigationItemSelectedListener(item -> {
             if(item.getItemId()==R.id.new_report){
                 startActivity(new Intent(getApplicationContext(), NewReportActivity.class));
+                overridePendingTransition(0,0);
+                return true;
+            }
+            if(item.getItemId()==R.id.Logout){
+                startActivity(new Intent(getApplicationContext(), Login.class).putExtra("logout",true));
+                overridePendingTransition(0,0);
+                return true;
+            }if(item.getItemId()==R.id.all_reports){
+                startActivity(new Intent(getApplicationContext(), AllReportsActivity.class));
                 overridePendingTransition(0,0);
                 return true;
             }

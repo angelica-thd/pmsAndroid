@@ -11,7 +11,16 @@
         android:title="@string/reports_bottom_bar" />
 
     <item
+        android:id="@+id/all_reports"
+        android:icon="@drawable/ic_baseline_list_alt_24"
+        android:title="@string/all_reports_bottom_bar" />
+
+    <item
         android:id="@+id/new_report"
         android:icon="@drawable/ic_report"
         android:title="@string/new_report_bottom_bar" />
+    <item
+        android:id="@+id/Logout"
+        android:icon="@drawable/ic_baseline_logout_24"
+        android:title="@string/logout" />
 </menu>

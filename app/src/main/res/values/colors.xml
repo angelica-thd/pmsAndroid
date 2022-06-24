@@ -14,14 +14,14 @@
     <color name="paleturquoise">#AFEEEE </color>
     <color name="cadetblue">#5F9EA0</color>
     <color name="blush">#EA5379</color>
-    <color name="babyblue">#c3e0e5</color>
-    <color name="babydarkerblue">#8DC3CC</color>
-    <color name="midnightblue">#41729f</color>
-    <color name="darkblue">#274472</color>
-    <color name="bluegray">#5885af</color>
+    <color name="babyblue">#62DAFA</color>
+    <color name="babydarkerblue">#8694DD</color>
+    <color name="midnightblue">#4F66CF</color>
+    <color name="darkblue">#172A7D</color>
+    <color name="bluegray">#6C7FD7</color>
     <color name="red200">#EF9A9A</color>
     <color name="red100">#FFCDD2</color>
-    <color name="red50">#FFEBEE</color>
+    <color name="red50">#C7EEFD</color>
     <color name="red300">#E57373</color>
     <color name="red400">#EF5350</color>
 

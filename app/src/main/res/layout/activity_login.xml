@@ -6,190 +6,232 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".Login"
-    android:background="@drawable/rectangle_back">
-
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/loginbackgr"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="1.0"
-        app:tint="#3C3C3C"
-        app:srcCompat="@drawable/ic_report" />
-
-    <ImageView
-        android:id="@+id/loginbackgr"
-        android:layout_width="300dp"
-        android:layout_height="350dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="55dp"
-        android:alpha="0.4"
-
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/signupbackgr"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangled"
-        app:tint="@color/white" />
-
-    <ImageView
-        android:id="@+id/signupbackgr"
-        android:layout_width="300dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="50dp"
-        android:alpha="0.4"
-        android:scaleType="fitXY"
+   >
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976"
-        app:srcCompat="@drawable/rectangled"
-        app:tint="@color/white" />
+        app:layout_constraintVertical_bias="0.421">
 
-    <TextView
-        android:id="@+id/signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/signup"
-        android:textAlignment="center"
-        android:textColor="#2196F3"
-        app:layout_constraintBottom_toBottomOf="@+id/signupbackgr"
-        app:layout_constraintEnd_toEndOf="@+id/signupbackgr"
-        app:layout_constraintStart_toStartOf="@+id/signupbackgr"
-        app:layout_constraintTop_toTopOf="@+id/signupbackgr"
-        app:layout_constraintVertical_bias="0.17" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainLayout"
+            app:layout_constraintTop_toTopOf="@id/scroll">
 
-    <Button
-        android:id="@+id/singup_btn"
-        android:layout_width="285dp"
-        android:layout_height="35dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/rectangled"
-        android:text="@string/register"
-        android:textColor="@color/white"
-        android:textSize="12dp"
-        app:backgroundTint="#044d8c"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/signupbackgr"
-        app:layout_constraintStart_toStartOf="@+id/signupbackgr"
-        app:layout_constraintVertical_bias="0.0" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toTopOf="@+id/loginbackgr"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.483"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:srcCompat="@drawable/smartcity" />
 
-    <EditText
-        android:id="@+id/emailedit"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/email"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/black"
-        android:textColorHint="@color/blush"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/passwordedit"
-        app:layout_constraintEnd_toEndOf="@+id/loginbackgr"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="@+id/loginbackgr"
-        app:layout_constraintTop_toTopOf="@+id/loginbackgr"
-        app:layout_constraintVertical_bias="0.409"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            <ImageView
+                android:id="@+id/logo2"
+                android:layout_width="81dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="96dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:srcCompat="@drawable/ic_baseline_report_problem_24"
+                app:tint="@color/darkblue" />
 
-    <EditText
-        android:id="@+id/passwordedit"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
-        android:drawableLeft="@drawable/password"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/blush"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/loginbackgr"
-        app:layout_constraintEnd_toEndOf="@+id/loginbackgr"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="@+id/loginbackgr"
-        tools:ignore="SpeakableTextPresentCheck" />
+            <ImageView
+                android:id="@+id/logo3"
+                android:layout_width="81dp"
+                android:layout_height="73dp"
+                android:layout_marginTop="96dp"
+                android:layout_marginEnd="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.233"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:srcCompat="@drawable/ic_baseline_report_problem_24"
+                app:tint="@color/darkblue" />
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="285dp"
-        android:layout_height="35dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/rectangled"
-        android:text="@string/login"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="12dp"
-        android:onClick="signIn"
-        app:backgroundTint="#044d8c"
-        app:layout_constraintBottom_toBottomOf="@+id/loginbackgr"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <ImageView
+                android:id="@+id/loginbackgr"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="30dp"
+                android:alpha="0.4"
+                android:background="@drawable/rectangle_back"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.47"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView" />
 
-    <TextView
-        android:id="@+id/emaillogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/email"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/emailedit"
-        app:layout_constraintStart_toStartOf="@+id/loginbackgr"
-        app:layout_constraintTop_toTopOf="@+id/loginbackgr" />
+            <ImageView
+                android:id="@+id/signupbackgr"
+                android:layout_width="300dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="30dp"
+                android:alpha="0.4"
+                android:background="@drawable/rectangle_back"
 
-    <TextView
-        android:id="@+id/passlogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:text="@string/password"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/passwordedit"
-        app:layout_constraintStart_toStartOf="@+id/loginbackgr"
-        app:layout_constraintTop_toBottomOf="@+id/emailedit"
-        app:layout_constraintVertical_bias="1.0" />
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.489"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loginbackgr" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/app_name2"
-        android:textColor="#FFFFFF"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/signup"
+                android:textAlignment="center"
+                android:textColor="#2196F3"
+                app:layout_constraintBottom_toBottomOf="@+id/signupbackgr"
+                app:layout_constraintEnd_toEndOf="@+id/signupbackgr"
+                app:layout_constraintStart_toStartOf="@+id/signupbackgr"
+                app:layout_constraintTop_toTopOf="@+id/signupbackgr"
+                app:layout_constraintVertical_bias="0.17" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="@string/register"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/singup_btn"
-        app:layout_constraintEnd_toEndOf="@+id/singup_btn"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="@+id/singup_btn"
-        app:layout_constraintTop_toTopOf="@+id/signupbackgr"
-        app:layout_constraintVertical_bias="0.0" />
+            <Button
+                android:id="@+id/singup_btn"
+                android:layout_width="285dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/rectangled"
+                android:text="@string/register"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                app:backgroundTint="@color/darkblue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/signupbackgr"
+                app:layout_constraintStart_toStartOf="@+id/signupbackgr"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/emailedit"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/email"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blush"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/passwordedit"
+                app:layout_constraintEnd_toEndOf="@+id/loginbackgr"
+                app:layout_constraintHorizontal_bias="0.506"
+                app:layout_constraintStart_toStartOf="@+id/loginbackgr"
+                app:layout_constraintTop_toTopOf="@+id/loginbackgr"
+                app:layout_constraintVertical_bias="0.409"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/passwordedit"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="150dp"
+                android:drawableLeft="@drawable/password"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blush"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/loginbackgr"
+                app:layout_constraintEnd_toEndOf="@+id/loginbackgr"
+                app:layout_constraintHorizontal_bias="0.466"
+                app:layout_constraintStart_toStartOf="@+id/loginbackgr"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="285dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="36dp"
+                android:background="@drawable/rectangled"
+                android:onClick="signIn"
+                android:text="@string/login"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                app:backgroundTint="@color/darkblue"
+                app:layout_constraintBottom_toBottomOf="@+id/loginbackgr"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.492"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/emaillogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/email"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/emailedit"
+                app:layout_constraintStart_toStartOf="@+id/loginbackgr"
+                app:layout_constraintTop_toTopOf="@+id/loginbackgr" />
+
+            <TextView
+                android:id="@+id/passlogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:text="@string/password"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/passwordedit"
+                app:layout_constraintStart_toStartOf="@+id/loginbackgr"
+                app:layout_constraintTop_toBottomOf="@+id/emailedit"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/app_name2"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.06"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:text="@string/register"
+                android:textColor="#FFFFFF"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/singup_btn"
+                app:layout_constraintEnd_toEndOf="@+id/singup_btn"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="@+id/singup_btn"
+                app:layout_constraintTop_toTopOf="@+id/signupbackgr"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

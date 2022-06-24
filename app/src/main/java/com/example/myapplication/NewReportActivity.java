@@ -84,9 +84,9 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); //night mode ui is not supported
         datetimePicker = findViewById(R.id.datetime);
-        datetimeView = findViewById(R.id.datetimeview);
+        datetimeView = findViewById(R.id.datetimevalue);
         locationView = findViewById(R.id.locationButton);
-        description = findViewById(R.id.description);
+        description = findViewById(R.id.descriptionvalue);
         incidentPhoto = findViewById(R.id.incidentPhoto);
         progressBar = findViewById(R.id.progress_view);
         fab = findViewById(R.id.report_fab);
@@ -101,36 +101,45 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
         currentUser = auth.getCurrentUser();
 
 
-        boolean gps_enabled = false, network_enabled = false;
-        try {
-            gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-            Log.e("GPS","kleisto");
-        } catch(Exception ex) {}
-
-        try {
-            network_enabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        } catch(Exception ex) {}
-
-        if(!gps_enabled ) {
-            // notify user
-            new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.DialogTheme))
-                    .setMessage(R.string.gps_network_not_enabled)
-                    .setPositiveButton(R.string.open_location_settings, (paramDialogInterface, paramInt) -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
-                    .setNegativeButton(R.string.cancel,null)
-                    .show();
-        }
+//        boolean gps_enabled = false, network_enabled = false;
+//        try {
+//            gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+//            Log.e("GPS","kleisto");
+//        } catch(Exception ex) {}
+//
+//        try {
+//            network_enabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+//        } catch(Exception ex) {}
+//
+//        if(!gps_enabled ) {
+//            // notify user
+//            new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.DialogTheme))
+//                    .setMessage(R.string.gps_network_not_enabled)
+//                    .setPositiveButton(R.string.open_location_settings, (paramDialogInterface, paramInt) -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
+//                    .setNegativeButton(R.string.cancel,null)
+//                    .show();
+//        }
         bottomBar=findViewById(R.id.bottombar);
-        bottomBar.getMenu().getItem(1).setChecked(true);
+        bottomBar.getMenu().getItem(2).setChecked(true);
         bottomBar.setOnNavigationItemSelectedListener(item -> {
             if(item.getItemId()==R.id.my_reports){
                 startActivity(new Intent(getApplicationContext(), MyReportsActivity.class));
                 overridePendingTransition(0,0);
                 return true;
             }
+            if(item.getItemId()==R.id.Logout){
+                startActivity(new Intent(getApplicationContext(), Login.class).putExtra("logout",true));
+                overridePendingTransition(0,0);
+                return true;
+            }if(item.getItemId()==R.id.all_reports){
+                startActivity(new Intent(getApplicationContext(), AllReportsActivity.class));
+                overridePendingTransition(0,0);
+                return true;
+            }
             return item.getItemId() == R.id.new_report;
         });
 
-        coord = findViewById(R.id.locationtxt);
+        coord = findViewById(R.id.locationvalue);
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE); //location services initialization
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

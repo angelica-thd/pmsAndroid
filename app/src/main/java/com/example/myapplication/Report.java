@@ -4,15 +4,14 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 public class Report {
     private String timestamp;
@@ -21,13 +20,16 @@ public class Report {
     private double longitude;
     private String description;
     private String id;
+    private String type;
+    private List<String> types;
+
 
     public Report(String id) {
         this.id = id;
+        String[] commons = {"Ελλειπής Συντήρηση Δρόμων", "Ελλειπής Συντήρηση Παλαιών Κτιρίων", "Έλλειψη Μέσων Μαζικής Μεταφοράς στην Περιοχή", "Βλάβες/Καταστροφές", "Έλλειψη Θέσεις Πάρκινγκ", "Ρύπανση", "Ελλειπής Απομάκρυνση Απορριμάτων", "Εγκληματικότητα", "Βανδαλισμοί", "Άλλο"};
+        types.addAll(Arrays.asList(commons));
     }
     public Report() {
-
-
     }
     public List<Report> getReports(DatabaseReference ref, String userID){
         List<Report> reports = new ArrayList<>();
@@ -64,6 +66,17 @@ public class Report {
         return reports;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public boolean setType(String type) {
+        if (types.contains(type)){
+            this.type = type;
+            return true;
+        }
+        else return false;
+    }
 
     public double getLatitude() {
         return latitude;

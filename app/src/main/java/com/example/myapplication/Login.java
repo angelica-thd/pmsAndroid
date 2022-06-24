@@ -33,7 +33,7 @@ public class Login extends AppCompatActivity {
             pass.setText("");
 
         //if the holder has already logged in once while using the app there's no need to sign in again
-            if(auth.getCurrentUser()!=null)
+            if(auth.getCurrentUser()!=null && !getIntent().getBooleanExtra("logout",false))
                 startActivity(new Intent(this, NewReportActivity.class));
         }
 
@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
         auth.signInWithEmailAndPassword(email.getText().toString(),pass.getText().toString()).addOnCompleteListener(this,
                 task -> { if(task.isSuccessful()) {
                     currentUser = auth.getCurrentUser();
-                    startActivity(new Intent(this, MyReportsActivity.class).putExtra("activity",0));
+                    startActivity(new Intent(this, NewReportActivity.class).putExtra("activity",0));
                 }
                 else Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show(); });
     }
