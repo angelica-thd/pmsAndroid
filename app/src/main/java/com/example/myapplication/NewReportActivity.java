@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -10,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
@@ -42,6 +42,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.myapplication.utils.Report;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -68,8 +69,7 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
     private EditText description;
     private Context main;
     BottomNavigationView bottomBar;
-    private LatLng current_loc,user_input_loc;
-    private double current_lat = -99, current_lon = -99;
+    private LatLng current_loc,user_input_loc, report_loc;
     private String category;
     private FirebaseDatabase db;
     private FirebaseAuth auth;
@@ -79,7 +79,7 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
     private StorageReference storageReference;
     private LocationManager locationManager;
     private Uri filePath;
-    private boolean myloc = false;
+    private boolean myloc = false, img, gps_enabled , network_enabled ;
     private final int PICK_IMAGE_REQUEST = 22;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int  reqCode = 786;
@@ -97,9 +97,13 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
         locationView = findViewById(R.id.locationButton);
         description = findViewById(R.id.descriptionvalue);
         incidentPhoto = findViewById(R.id.incidentPhoto);
-        progressBar = findViewById(R.id.progress_view);
+        progressBar = findViewById(R.id.progress_newrep);
+
+        //progressBar.setVisibility(View.INVISIBLE);
+
         fab = findViewById(R.id.report_fab);
         main = this;
+        img = false;
 
         db = FirebaseDatabase.getInstance("https://course9-b6dac-default-rtdb.europe-west1.firebasedatabase.app/");
         ref = db.getReference("reports");
@@ -109,11 +113,11 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
         auth = FirebaseAuth.getInstance();      //firebase authentication initialization
         currentUser = auth.getCurrentUser();
 
+        //DROPDOWN
         //get the spinner from the xml.
         dropdown = findViewById(R.id.category);
         //create a list of items for the spinner.
         String[] items = new String[]{"Ελλειπής Συντήρηση Δρόμων", "Ελλειπής Συντήρηση Παλαιών Κτιρίων", "Έλλειψη Μέσων Μαζικής Μεταφοράς στην Περιοχή", "Βλάβες/Καταστροφές", "Έλλειψη Θέσεις Πάρκινγκ", "Ρύπανση", "Ελλειπής Απομάκρυνση Απορριμάτων", "Εγκληματικότητα", "Βανδαλισμοί", "Άλλο"};
-
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         //There are multiple variations of this, but this is the basic variant.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item ,items);
@@ -135,29 +139,11 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
             }
         });
 
-//        boolean gps_enabled = false, network_enabled = false;
-//        try {
-//            gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-//            Log.e("GPS","kleisto");
-//        } catch(Exception ex) {}
-//
-//        try {
-//            network_enabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-//        } catch(Exception ex) {}
-//
-//        if(!gps_enabled ) {
-//            // notify user
-//            new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.DialogTheme))
-//                    .setMessage(R.string.gps_network_not_enabled)
-//                    .setPositiveButton(R.string.open_location_settings, (paramDialogInterface, paramInt) -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
-//                    .setNegativeButton(R.string.cancel,null)
-//                    .show();
-//        }
         bottomBar=findViewById(R.id.bottombar);
         bottomBar.getMenu().getItem(2).setChecked(true);
         bottomBar.setOnNavigationItemSelectedListener(item -> {
-            if(item.getItemId()==R.id.my_reports){
-                startActivity(new Intent(getApplicationContext(), MyReportsActivity.class));
+            if(item.getItemId()==R.id.all_reports){
+                startActivity(new Intent(getApplicationContext(), ReportsActivity.class));
                 overridePendingTransition(0,0);
                 return true;
             }
@@ -165,16 +151,33 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
                 startActivity(new Intent(getApplicationContext(), Login.class).putExtra("logout",true));
                 overridePendingTransition(0,0);
                 return true;
-            }if(item.getItemId()==R.id.all_reports){
-                startActivity(new Intent(getApplicationContext(), AllReportsActivity.class));
-                overridePendingTransition(0,0);
-                return true;
             }
             return item.getItemId() == R.id.new_report;
         });
 
         coord = findViewById(R.id.locationvalue);
+        StringBuilder gps_address = new StringBuilder();
+        Bundle b = getIntent().getExtras();
+        if (b!= null) {
+            LatLng loc = (LatLng) b.get("mapclick");
+            try {
+                Geocoder geocoder = new Geocoder(this, Locale.forLanguageTag("EL"));
+                List<Address> addresses = geocoder.getFromLocation(loc.latitude, loc.longitude, 1);
+                Log.i("report", String.valueOf(addresses.get(0)));
+                if (addresses.size() > 0) {
+                    Address address = addresses.get(0);
+                    gps_address.append(address.getAddressLine(0));
+                    coord.setText(gps_address.toString());
+                    report_loc = loc;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else if(getIntent().getStringExtra("from")!= null && getIntent().getStringExtra("from").equals("maps")){
+                Toast.makeText(getApplicationContext(), R.string.notfound, Toast.LENGTH_LONG).show();
+        }
 
+        //network_enabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE); //location services initialization
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, reqCode);
@@ -182,30 +185,41 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         locationView.setOnLongClickListener(view -> {
             Toast.makeText(getApplicationContext(), R.string.ownLoc, Toast.LENGTH_LONG).show();
             return true;
         });
         locationView.setOnClickListener(view ->{
-            myloc = true;
-            Log.i("location","clicked");
-            StringBuilder gps_address = new StringBuilder();
-            try {
-                Geocoder geocoder = new Geocoder(this, Locale.forLanguageTag("EL"));
-                if (current_loc != null){
-                    List<Address> addresses = geocoder.getFromLocation(current_loc.latitude, current_loc.longitude, 1);
-                    if (addresses.size() > 0) {
-                        Address address = addresses.get(0);
-                        gps_address.append(address.getAddressLine(0));
-                        coord.setText(gps_address.toString());
-                    }
-                }else{
+            if(!gps_enabled) {
+                // notify user
+                new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.DialogTheme))
+                        .setMessage(R.string.gps_network_not_enabled)
+                        .setPositiveButton(R.string.open_location_settings, (paramDialogInterface, paramInt) -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
+                        .setNegativeButton(R.string.cancel,null)
+                        .show();
+            }else{
+                myloc = true;
+                Log.e("location", String.valueOf(gps_enabled));
+                try {
+                    Geocoder geocoder = new Geocoder(this, Locale.forLanguageTag("EL"));
+                    if (current_loc != null){
+                        List<Address> addresses = geocoder.getFromLocation(current_loc.latitude, current_loc.longitude, 1);
+                        if (addresses.size() > 0) {
+                            Address address = addresses.get(0);
+                            gps_address.append(address.getAddressLine(0));
+                            coord.setText(gps_address.toString());
+                            report_loc = current_loc;
+                        }
+                    }else{
 
-                    Toast.makeText(getApplicationContext(), R.string.loc_not_ready, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.loc_not_ready, Toast.LENGTH_LONG).show();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+
         });
 
         fab.setOnClickListener(view -> {
@@ -253,6 +267,7 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
 
 
     public void dispatchTakePictureIntent(View view) {
+        img = true;
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
@@ -264,6 +279,7 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
 
     public void selectImg(View view)
     {
+        img = true;
         // Defining Implicit Intent to mobile gallery
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -301,81 +317,86 @@ public class NewReportActivity extends AppCompatActivity implements DatePickerDi
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void report() throws IOException {
-        Report report = new Report(String.valueOf(UUID.randomUUID()));
-        report.setTimestamp(datetimeView.getText().toString());
-        report.setDescription(description.getText().toString());
-        report.setLocation(coord.getText().toString());
-        if (category!=null) report.setType(category);
-        else {
-            Toast toast = Toast.makeText(context, R.string.select_category, Toast.LENGTH_LONG);
+        boolean check = img && datetimeView.getText().toString().length() != 0
+                && description.getText().toString().length() != 0
+                && coord.getText().toString().length() != 0;
+        Log.i("reportcheck", String.valueOf(check));
+        Log.i("reportcheck",img+", "+datetimeView.getText().toString().length()+", "+description.getText().toString().length()+", "+coord.getText().toString().length());
+        if(img && datetimeView.getText().toString().length() != 0
+                && description.getText().toString().length() != 0
+                && coord.getText().toString().length() != 0
+        ) {
+            if (!myloc && !coord.getText().toString().isEmpty()) {
+                List<Address> addresses = new Geocoder(this, Locale.forLanguageTag("EL")).getFromLocationName(coord.getText().toString(), 1);
+                if (addresses.size() > 0) {
+                    Address address = addresses.get(0);
+                    user_input_loc = new LatLng(address.getLatitude(), address.getLongitude());
+                    Log.i("report", String.valueOf(user_input_loc));
+                    report_loc = user_input_loc;
+                }
+            }
+            Report report = new Report(String.valueOf(UUID.randomUUID()));
+            report.setTimestamp(datetimeView.getText().toString());
+            report.setDescription(description.getText().toString());
+            report.setLocation(coord.getText().toString());
+            report.setType(category);
+            report.setLatitude(report_loc.latitude);
+            report.setLongitude(report_loc.longitude);
+
+            Log.i("report", report.toString());
+
+            // adding listeners on upload
+            // or failure of image
+            // Progress Listener for loading
+            // percentage on the dialog box
+            //TODO fix upload from camera
+
+            ref.child(currentUser.getUid()).push().setValue(report).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Log.i("report", "ref");
+                    if (filePath != null) {
+                        Log.i("report", filePath.toString());
+                        storageReference.child(currentUser.getUid()).child(report.getId()).putFile(filePath)
+                                .addOnSuccessListener(taskSnapshot -> {
+                                    Log.i("report", "success");
+                                    Toast.makeText(NewReportActivity.this, R.string.success, Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), ReportsActivity.class));
+                                })
+                                .addOnFailureListener(e ->
+                                        Toast.makeText(NewReportActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show())
+                                .addOnProgressListener(
+                                        taskSnapshot -> {
+                                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                            Log.i("reportprogress", String.valueOf(progress));
+                                            if (progress < 100) {
+                                                progressBar.setVisibility(View.VISIBLE);
+                                                ConstraintLayout layout = findViewById(R.id.mainLayout);
+                                                layout.setAlpha((float) 0.5);
+                                                progressBar.setProgress((int) progress);
+
+                                            } else {
+                                                ConstraintLayout layout = findViewById(R.id.mainLayout);
+                                                layout.setAlpha(1);
+                                                progressBar.setVisibility(View.INVISIBLE);
+                                            }
+                                        });
+                    }
+                } else Log.i("click", task.getException().getMessage());
+
+            }).addOnFailureListener(e -> Log.i("click", e.getMessage()));
+        } else{
+            Toast toast = Toast.makeText(context, R.string.blankField, Toast.LENGTH_LONG);
             View v = toast.getView();
             v.setBackgroundResource(R.drawable.error_toast);
             TextView t = (TextView) toast.getView().findViewById(android.R.id.message);
             t.setTextColor(Color.RED);
             toast.show();
         }
-        if (current_lon!= -99 && current_lat!= -99){
-            report.setLatitude(current_lat);
-            report.setLongitude(current_lon);
-        }
-        if(!myloc && !coord.getText().toString().isEmpty()){
-            List<Address> addresses = new Geocoder(this, Locale.forLanguageTag("EL")).getFromLocationName(coord.getText().toString(),1);
-            if (addresses.size()>0){
-                Address address = addresses.get(0);
-                user_input_loc = new LatLng(address.getLatitude(),address.getLongitude());
-                Log.i("report", String.valueOf(user_input_loc));
-            }
-        }
-        Log.i("report", report.toString());
-
-        // adding listeners on upload
-        // or failure of image
-        // Progress Listener for loading
-        // percentage on the dialog box
-        //TODO check if everything is filled
-        //TODO fix upload from camera
-        ref.child(currentUser.getUid()).push().setValue(report).addOnCompleteListener(task -> {
-                                    if(task.isSuccessful()){
-                                        Log.i("click","ref");
-                                        if (filePath!=null){
-                                            Log.i("report",filePath.toString());
-                                            storageReference.child(currentUser.getUid()).child(report.getId()).putFile(filePath)
-                                                    .addOnSuccessListener(taskSnapshot ->{
-                                                            Log.i("report", "success");
-                                                            Toast.makeText(NewReportActivity.this,R.string.success, Toast.LENGTH_SHORT).show();
-                                                            startActivity(new Intent(getApplicationContext(),MyReportsActivity.class));
-                                                            })
-                                                    .addOnFailureListener(e ->
-                                                            Toast.makeText(NewReportActivity.this,"Failed " + e.getMessage(), Toast.LENGTH_SHORT).show())
-                                                    .addOnProgressListener(
-                                                            taskSnapshot -> {
-                                                                double progress= (100.0* taskSnapshot.getBytesTransferred()/ taskSnapshot.getTotalByteCount());
-                                                                Log.i("reportprogress", String.valueOf(progress));
-                                                                if (progress<100) {
-                                                                    progressBar.setVisibility(View.VISIBLE);
-                                                                    ConstraintLayout layout = findViewById(R.id.mainLayout);
-                                                                    layout.setAlpha((float) 0.5);
-                                                                    progressBar.setProgress((int) progress);
-
-                                                                } else {
-                                                                    ConstraintLayout layout = findViewById(R.id.mainLayout);
-                                                                    layout.setAlpha(1);
-                                                                    progressBar.setVisibility(View.INVISIBLE);
-                                                                }
-                                                            });
-                                        }
-                                    }
-                                    else  Log.i("click",task.getException().getMessage());
-
-                                }).addOnFailureListener(e -> Log.i("click",e.getMessage()));
-
     }
     @Override
     public void onLocationChanged(@NonNull Location location) {
         if (location!=null){
             current_loc = new LatLng(location.getLatitude(),location.getLongitude());
-            current_lat = location.getLatitude();
-            current_lon = location.getLongitude();
         }
     }
 

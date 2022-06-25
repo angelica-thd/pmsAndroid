@@ -6,36 +6,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MyReportsActivity">
+    tools:context=".ReportsActivity">
 
 
-            <TextView
-                android:id="@+id/report"
+    <TextView
+        android:id="@+id/report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/reports"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="My Reports"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <Spinner
+        android:id="@+id/filter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_weight="7"
+        android:background="@android:drawable/btn_dropdown"
+        android:backgroundTint="@color/babydarkerblue"
+        android:drawableEnd="@drawable/ic_baseline_filter_list_24"
+        android:outlineSpotShadowColor="@color/darkblue"
+        android:popupBackground="@color/red50"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myreportcolors" />
 
-            <fragment
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="8"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.645"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/report"
-                app:layout_constraintVertical_bias="0.033"
-                map:layout_constraintBottom_toTopOf="@id/bottombar2"
-                tools:context=".MyReportsActivity" />
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.645"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filter"
+        app:layout_constraintVertical_bias="0.033"
+        map:layout_constraintBottom_toTopOf="@id/bottombar2"
+        tools:context=".ReportsActivity" />
 
 
     <TextView
@@ -44,8 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
-        android:textColor="@color/black"
-        android:visibility="invisible"
+        android:textColor="#3C3C3C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/report"
@@ -70,6 +86,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_items" />
 
+    <TextView
+        android:id="@+id/myreportcolors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/myreport"
+        android:textColor="@color/myreport"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/report" />
+
+    <TextView
+        android:id="@+id/allreportcolors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/allreports"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        android:text="@string/allreports"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintStart_toEndOf="@+id/myreportcolors"
+        app:layout_constraintTop_toBottomOf="@+id/report" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

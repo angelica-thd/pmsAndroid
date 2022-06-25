@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -95,6 +94,6 @@ public class SingleReportActivity extends AppCompatActivity {
     }
     //progress bar sthn eikona, ftiakse ligo to layout na einai ola pio megala kai pio konta metaksu tous, top back button pio megalo kai pio visible h pio mesa isws kalytera
     public void back(View view){
-        startActivity(new Intent(getApplicationContext(), MyReportsActivity.class));
+        startActivity(new Intent(getApplicationContext(), ReportsActivity.class));
     }
 }

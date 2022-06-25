@@ -28,11 +28,15 @@
     <string name="student_user_reg" translatable="false">Εγγραφή Χρήστη</string>
     <string name="reportproblem" translatable="false">Αναφορά Προβλήματος</string>
     <string name="report" translatable="false">Αναφορά</string>
+    <string name="reports" translatable="false">Αναφορές</string>
+    <string name="allreports" translatable="false">Όλες οι αναφορές</string>
+    <string name="myreport" translatable="false">Η αναφορά μου</string>
     <string name="ownLoc" translatable="false">Χρησιμοποίησε την τοποθεσία μου</string>
     <string name="register" translatable="false">Εγγραφή</string>
     <string name="login" translatable="false">Σύνδεση</string>
     <string name="logout" translatable="false">Αποσύνδεση</string>
     <string name="success" translatable="false">Επιτυχής Αναφορά</string>
+    <string name="notfound" translatable="false">Δε βρέθηκε η τοποθεσία που ζητήσατε</string>
 
     <string name="password" translatable="false">Κωδικός Πρόσβασης</string>
     <string name="password_conf" translatable="false">Επιβεβαίωση Κωδικού</string>
@@ -51,7 +55,7 @@
     <string name="email" translatable="false">E-mail</string>
     <string name="username" translatable="false">Όνομα Χρήστη</string>
     <string name="fullname" translatable="false">Ονοματεπώνυμο</string>
-    <string name="app_name2" translatable="false">Report All</string>
+    <string name="app_name2" translatable="false">Smart City Report</string>
     <string name="phone" translatable="false">Τηλέφωνο Επικοινωνίας</string>
 
     <string name="signup" translatable="false">Δεν έχετε λογαριασμό;\nΚάντε εγγραφή.</string>

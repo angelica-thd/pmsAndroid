@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.utils;
 
 import android.os.Build;
 import android.util.Log;
@@ -28,42 +28,6 @@ public class Report {
 
     public Report(String id) {
         this.id = id;
-    }
-    public Report() {
-    }
-    public List<Report> getReports(DatabaseReference ref, String userID){
-        List<Report> reports = new ArrayList<>();
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot myreport : snapshot.child(userID).getChildren()) {
-                    String id = String.valueOf(myreport.child("id").getValue());
-                    String location = String.valueOf(myreport.child("location").getValue());
-                    String lat = String.valueOf(myreport.child("latitude").getValue());
-                    String lon = String.valueOf(myreport.child("longitude").getValue());
-                    String description = String.valueOf(myreport.child("description").getValue());
-                    String timestamp = String.valueOf(myreport.child("timestamp").getValue());
-                    //LatLng loc =new LatLng(Double.parseDouble(lat),Double.parseDouble(lon));
-
-                    Report report = new Report(id);
-                    report.setTimestamp(timestamp);
-                    report.setDescription(description);
-                    report.setLocation(location);
-                    report.setLatitude(Double.parseDouble(lat));
-                    report.setLongitude(Double.parseDouble(lon));
-
-                    reports.add(report);
-
-                }
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("fire_error",error.getMessage());
-            }
-        });
-        Log.i("reports", String.valueOf(reports));
-        return reports;
     }
 
     @NonNull

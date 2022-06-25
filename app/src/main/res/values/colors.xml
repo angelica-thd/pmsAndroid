@@ -23,6 +23,8 @@
     <color name="red100">#FFCDD2</color>
     <color name="red50">#C7EEFD</color>
     <color name="red300">#E57373</color>
+    <color name="myreport">#e9358f</color>
+    <color name="allreports">#3590e9</color>
     <color name="red400">#EF5350</color>
 
 </resources>

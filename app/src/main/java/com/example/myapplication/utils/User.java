@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.utils;
 
 public class User {
     // storing employee name.

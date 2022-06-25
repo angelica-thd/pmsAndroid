@@ -29,11 +29,11 @@
 
 
             <ProgressBar
-                android:id="@+id/progress_view"
+                android:id="@+id/progress_newrep"
                 style="@android:style/Widget.Holo.Light.ProgressBar"
                 android:layout_width="match_parent"
-                android:visibility="invisible"
                 android:layout_height="wrap_content"
+                android:visibility="visible"
                 android:layout_gravity="center_horizontal"
                 android:progressTint="@color/steelblue"
                 app:layout_constraintBottom_toTopOf="@+id/locationButton"
@@ -45,8 +45,8 @@
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
-                android:layout_height="29dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="@string/reportproblem"
                 android:textColor="@color/black"
@@ -60,18 +60,17 @@
             <ImageView
                 android:id="@+id/back"
                 android:layout_width="300dp"
-                android:layout_height="550dp"
+                android:layout_height="600dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
                 android:alpha="0.4"
+                android:background="@drawable/rectangle_back"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.493"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView4"
-                android:background="@drawable/rectangle_back"
-              />
+                app:layout_constraintTop_toBottomOf="@id/textView4" />
 
             <EditText
                 android:id="@+id/descriptionvalue"
@@ -128,14 +127,14 @@
                 app:layout_constraintEnd_toEndOf="@+id/back"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="@+id/back"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toTopOf="@+id/back" />
 
             <ImageView
                 android:id="@+id/datetime"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/buttonback"
                 android:onClick="pickDate"
 
@@ -260,15 +259,15 @@
                 android:id="@+id/incidentPhoto"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@+id/report_fab"
                 app:layout_constraintEnd_toStartOf="@+id/cam"
-                app:layout_constraintHorizontal_bias="0.365"
+                app:layout_constraintHorizontal_bias="0.37"
                 app:layout_constraintStart_toStartOf="@+id/back"
                 app:layout_constraintTop_toBottomOf="@+id/textView10"
-                app:layout_constraintVertical_bias="0.51"
-                tools:srcCompat="@tools:sample/avatars"/>
+                app:layout_constraintVertical_bias="0.02"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/datetimevalue"

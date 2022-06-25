@@ -20,11 +20,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+
         <activity
             android:name=".SingleReportActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AllReportsActivity"
             android:exported="false" />
 
         <meta-data
@@ -44,7 +52,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MyReportsActivity"
+            android:name=".ReportsActivity"
             android:exported="false" />
         <activity
             android:name=".NewReportActivity"
